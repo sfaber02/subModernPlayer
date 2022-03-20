@@ -10,7 +10,7 @@ const Playlist = (props) => {
     const songs = props.songs;
 
     /** Playlist entries array */
-    let pl = [];
+    let playlist = [];
 
     /** click handler for playlist items */
     const click = ({ target }) => {
@@ -19,17 +19,15 @@ const Playlist = (props) => {
     }
 
 
-    for (let song = 0; song < songs.length; song++) {
-        pl.push(<li id={song} onClick={click}>{songs[song]._src}</li>);
-    }
+   
     
 
     return (
         <div id='playlist'>
-            <Info song={songs[currentSong]}/>
-            <SeekBar song={songs[currentSong]} />
+            <Info />
+            <SeekBar />
             <ol>
-                {pl}
+                {playlist}
             </ol>
         </div>
     );

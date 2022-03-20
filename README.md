@@ -27,15 +27,20 @@
 - need to get a precise mockup of what the player will recieve from the website
 - figure out waveform rendering
 - fancy animated buttons of course
+- need to figure out how to get wavesurfer to render into a div within react
 
 
 ## Ideas 
 - howler.js looks pretty sweet
-    - has no way to generate waveforms!!
+    - has no way to generate waveforms!! booo
 - maybe wavesurfer.js?
+    - seems to be working much better
+    - will be less of a headache to generate waveforms
+
 
 
 
 ## Dependencies
 - React.js
 - Howler.js
+- wavesurfer.js

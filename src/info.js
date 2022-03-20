@@ -5,7 +5,7 @@ const Info = (props) => {
 
     return (
         <div id="info">
-            <h1>{song._src}</h1>
+            <h1>Info</h1>
         </div>
     );
 }

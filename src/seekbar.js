@@ -1,4 +1,3 @@
-import { Howl } from 'howler';
 import React, { useEffect } from 'react';
 import WaveSurfer  from 'wavesurfer.js';
 import { Controls } from './controls.js'
@@ -7,23 +6,21 @@ const SeekBar = (props) => {
     const song = props.song || '';
     console.log (song);
     
+    let wavesurfer;
+
+    useEffect(() => {
+        wavesurfer = WaveSurfer.create({
+            container: '#waveform',
+            waveColor: 'violet',
+            progressColor: 'purple'
+        });
+        wavesurfer.load(require('./audio-files/VitaminC.mp3'));
+    }, [])
+
     
-
-    const wavesurfer = WaveSurfer.create({
-        container: '#waveform',
-        waveColor: 'violet',
-        progressColor: 'purple'
-    });
-
-    wavesurfer.on('ready', function () {
-        wavesurfer.play();
-    });
-
-    wavesurfer.load(require('./audio-files/01 Damaged Bug – Rubber Lips.mp3'));
-
-    const playIt = () => song.play();
-    const stopIt = () => song.stop();
-    const pauseIt = () => song.pause();
+    const playIt = () => wavesurfer.play();
+    const stopIt = () => wavesurfer.stop();
+    const pauseIt = () => wavesurfer.pause();
     const nextIt = () => {};
     const prevIt = () => {};
 
@@ -34,7 +31,7 @@ const SeekBar = (props) => {
 
     return (
         <>
-            
+            <div id='waveform'></div>
             <h1>{song._src}</h1>
             <Controls 
                 play={playIt}
