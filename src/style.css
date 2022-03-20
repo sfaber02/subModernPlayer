@@ -1,0 +1,85 @@
+/* Basic Color Pallete */
+:root {
+    --red: #AA0000;
+    --blue: #0000AA;
+    --green: #4CAF50;
+    --light-blue: #2196F3;
+    --yellow: #FFFF55;
+    --light-red: #f44336;
+    --light-green: #00AAAA; 
+}
+
+html {
+    background-color: var(--blue);
+}
+
+#SMPplayerContainer {
+    display: flex;
+    /* border: 1px solid white; */
+    /* flex-direction: row; */
+}
+
+#SMPplaylistContainer {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid white; */
+    width: 100%;
+}
+
+#SMPwaveform {
+    border: 5px solid var(--yellow);
+    margin: 30px;
+    /* padding: 10px; */
+    border-radius: 5px;
+    background-color: var(--light-blue);
+}
+
+#SMPcontrols {
+    /* border: 1px solid white; */
+    position: relative;
+    top: -25px;
+    /* left: 25%; */
+    /* top: 200px; */
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+.SMPcontrolButtons {
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    color: var(--yellow);
+    background-color: var(--blue);
+    padding: 0;
+}
+
+.SMPcontrolButtons:hover {
+    color: var(--light-red);
+}
+
+#pauseButton {
+    font-size: 13px;
+    padding-bottom: 1px;
+}
+
+#stopButton {
+    font-size: 20px;
+}
+
+.playlistItem {
+    font-size: 20px;
+    color: var(--yellow)
+}
+
+#SMPinfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.SMPinfoText {
+    color: var(--yellow);
+    text-align: center;
+    margin: 0;
+}

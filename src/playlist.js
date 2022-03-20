@@ -15,14 +15,14 @@ const Playlist = (props) => {
     /** Event handlers that respons to back and next button clicks from controls component */
     const playNext = () => currentSong == songs.length - 1 ? setCurrentSong(0) : setCurrentSong(c => c += 1);
     const playPrev = () => currentSong == 0 ? setCurrentSong(songs.length -  1) : setCurrentSong(c => c -= 1);
-    
+
     
     return (
-        <div id='SMPplaylist'>
+        <div id='SMPplaylistContainer'>
             <Info song={songs[currentSong]} />
             <SeekBar song={songs[currentSong]} next={playNext} prev={playPrev} />
             <ol>
-                {songs.map((song, i) => <li id={i} onClick={click}>{song.title}</li>)}
+                {songs.map((song, i) => <li className='playlistItem' id={i} onClick={click}>{song.title}</li>)}
             </ol>
         </div>
     );

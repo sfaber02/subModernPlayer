@@ -19,10 +19,11 @@ const SeekBar = (props) => {
             currentSong.current =
                 WaveSurfer.create({
                     container: '#SMPwaveform',
-                    waveColor: 'violet',
+                    waveColor: '#AA0000',
                     progressColor: 'purple',
-                    // audioRate: .8,
-                    height: 500,
+                    cursorColor: '#FFFF55',
+                    // audioRate: .1,
+                    height: 200,
                     // normalize: true,
                     responsive: true,
                     barWidth: 5,
@@ -39,11 +40,6 @@ const SeekBar = (props) => {
             }
         }
     }, [song])
-
-    
-
-
-
     
     const playIt = () => {
         currentSong.current.play();
@@ -62,7 +58,7 @@ const SeekBar = (props) => {
 
     return (
         <>
-            <div id='SMPwaveform'></div>
+            {song && <div id='SMPwaveform'></div>}
             <Controls 
                 play={playIt}
                 stop={stopIt}
