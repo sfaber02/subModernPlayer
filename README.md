@@ -28,6 +28,7 @@
 - figure out waveform rendering
 - fancy animated buttons of course
 - need to figure out how to get wavesurfer to render into a div within react
+- make play/pause the same button?
 
 
 ## Ideas 

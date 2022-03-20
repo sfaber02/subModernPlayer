@@ -1,38 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import WaveSurfer  from 'wavesurfer.js';
 import { Controls } from './controls.js'
 
 const SeekBar = (props) => {
     const song = props.song || '';
-    console.log (song);
-    
-    let wavesurfer;
+    const currentSong = useRef();
 
+    /**
+     * Watches for a change in the selected song from the playlist
+     * unloads current song and loads new song
+     * AUTOPLAY NOT WORKING
+     */
     useEffect(() => {
-        wavesurfer = WaveSurfer.create({
-            container: '#waveform',
-            waveColor: 'violet',
-            progressColor: 'purple'
-        });
-        wavesurfer.load(require('./audio-files/VitaminC.mp3'));
-    }, [])
+        if (currentSong.current) currentSong.current.destroy();
+        if (song) {
+            currentSong.current =
+                WaveSurfer.create({
+                    container: '#SMPwaveform',
+                    waveColor: 'violet',
+                    progressColor: 'purple'
+                });
+            currentSong.current.load(require(`${song}`));
+        }
+    }, [song])
 
     
-    const playIt = () => wavesurfer.play();
-    const stopIt = () => wavesurfer.stop();
-    const pauseIt = () => wavesurfer.pause();
+    const playIt = () => currentSong.current.play();
+    const stopIt = () => currentSong.current.stop();
+    const pauseIt = () => currentSong.current.pause();
     const nextIt = () => {};
     const prevIt = () => {};
 
-    // if (song) {
-    //     stopIt();
-    //     playIt();
-    // }
-
     return (
         <>
-            <div id='waveform'></div>
-            <h1>{song._src}</h1>
+            <div id='SMPwaveform'></div>
+            <h1>{song}</h1>
             <Controls 
                 play={playIt}
                 stop={stopIt}
@@ -40,7 +42,6 @@ const SeekBar = (props) => {
                 next={nextIt}
                 prev={prevIt}
             />
-            
         </>
     );
 }

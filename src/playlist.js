@@ -9,12 +9,8 @@ const Playlist = (props) => {
     /** array of songs passed in from app */
     const songs = props.songs;
 
-    /** Playlist entries array */
-    let playlist = [];
-
     /** click handler for playlist items */
     const click = ({ target }) => {
-        console.log (target.id);
         setCurrentSong(target.id);
     }
 
@@ -23,11 +19,11 @@ const Playlist = (props) => {
     
 
     return (
-        <div id='playlist'>
-            <Info />
-            <SeekBar />
+        <div id='SMPplaylist'>
+            <Info song={songs[currentSong]} />
+            <SeekBar song={songs[currentSong]} />
             <ol>
-                {playlist}
+                {songs.map((song, i) => <li id={i} onClick={click}>{song}</li>)}
             </ol>
         </div>
     );

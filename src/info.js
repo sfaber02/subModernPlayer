@@ -4,8 +4,8 @@ const Info = (props) => {
     const song = props.song || 'Info';
 
     return (
-        <div id="info">
-            <h1>Info</h1>
+        <div id="SMPinfo">
+            <h1>{song}</h1>
         </div>
     );
 }
