@@ -26,6 +26,7 @@ const App = () => {
 
     return (
         <div>
+            <div id="waveform"></div>
             <Playlist songs={songs} />
         </div>
     );

@@ -13,7 +13,7 @@
     - status?
     - edit details
     - delete?
-    
+
 
 ## Component Hierarchy
 - index.js
@@ -31,6 +31,9 @@
 
 ## Ideas 
 - howler.js looks pretty sweet
+    - has no way to generate waveforms!!
+- maybe wavesurfer.js?
+
 
 
 ## Dependencies
