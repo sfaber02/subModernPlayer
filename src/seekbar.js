@@ -18,7 +18,17 @@ const SeekBar = (props) => {
                 WaveSurfer.create({
                     container: '#SMPwaveform',
                     waveColor: 'violet',
-                    progressColor: 'purple'
+                    progressColor: 'purple',
+                    // audioRate: .8,
+                    height: 500,
+                    // normalize: true,
+                    responsive: true,
+                    barWidth: 5,
+                    barRadius: 5,
+                    cursorWidth: 3,
+                    // backend: 'MediaElement',
+                    // mediaControls: true,
+
                 });
             currentSong.current.load(require(`${song}`));
         }
