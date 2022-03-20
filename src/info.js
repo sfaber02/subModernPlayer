@@ -5,7 +5,10 @@ const Info = (props) => {
 
     return (
         <div id="SMPinfo">
-            <h1>{song}</h1>
+            <h1>{song.title}</h1>
+            <h1>{song.notes}</h1>
+            <h1>{song.date}</h1>
+            
         </div>
     );
 }

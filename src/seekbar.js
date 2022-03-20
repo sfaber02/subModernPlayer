@@ -1,18 +1,20 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import WaveSurfer  from 'wavesurfer.js';
 import { Controls } from './controls.js'
 
 const SeekBar = (props) => {
+    console.log (props.song);
     const song = props.song || '';
     const currentSong = useRef();
-
+    const [playing, setPlaying] = useState(() => false);
     /**
      * Watches for a change in the selected song from the playlist
      * unloads current song and loads new song
-     * AUTOPLAY NOT WORKING
      */
     useEffect(() => {
-        if (currentSong.current) currentSong.current.destroy();
+        if (currentSong.current) {
+            currentSong.current.destroy();
+        }
         if (song) {
             currentSong.current =
                 WaveSurfer.create({
@@ -28,23 +30,39 @@ const SeekBar = (props) => {
                     cursorWidth: 3,
                     // backend: 'MediaElement',
                     // mediaControls: true,
-
                 });
-            currentSong.current.load(require(`${song}`));
+            currentSong.current.load(require(`${song.src}`));
+            if (playing) {
+                currentSong.current.on('ready', () => {
+                    currentSong.current.play();
+                });
+            }
         }
     }, [song])
 
     
-    const playIt = () => currentSong.current.play();
-    const stopIt = () => currentSong.current.stop();
-    const pauseIt = () => currentSong.current.pause();
-    const nextIt = () => {};
-    const prevIt = () => {};
+
+
+
+    
+    const playIt = () => {
+        currentSong.current.play();
+        setPlaying(true);
+    }
+    const stopIt = () => {
+        currentSong.current.stop();
+        setPlaying(false);
+    }
+    const pauseIt = () => {
+        currentSong.current.pause();
+        setPlaying(false);
+    }
+    const nextIt = () => props.next();
+    const prevIt = () => props.prev();
 
     return (
         <>
             <div id='SMPwaveform'></div>
-            <h1>{song}</h1>
             <Controls 
                 play={playIt}
                 stop={stopIt}

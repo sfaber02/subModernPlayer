@@ -1,10 +1,6 @@
 import React from 'react';
 
 const Controls = (props) => {
-
-
-
-
     return (
         <div id='SMPcontrols'>
             <button className='SMPcontrolButtons' onClick={props.prev}>Back</button>
