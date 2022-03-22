@@ -53,6 +53,7 @@ html {
     color: var(--yellow);
     background-color: var(--blue);
     padding: 0;
+
 }
 
 .SMPcontrolButtons:hover {
@@ -79,15 +80,54 @@ html {
 #SMPinfo {
     display: flex;
     flex-direction: column;
+    border: 5px solid var(--yellow);
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    /* padding: 10px; */
+    border-radius: 5px;
+    background-color: var(--light-blue);
 }
 
-.SMPinfoText {
+.SMPinfoTextTitle {
+    color: var(--blue);
+    text-align: center;
+    margin: 0;
+    font-size: 30px;
+}
+
+.SMPinfoTextDate {
+    color: var(--light-red);
+    text-align: center;
+    margin: 0;
+    font-size: 20px;
+}
+
+.SMPinfoTextNotes {
     color: var(--yellow);
     text-align: center;
     margin: 0;
+    font-size: 20px;
 }
 
+
 .SMPtime {
-    margin: 0;
+    border: 5px solid var(--yellow);
+    
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 0px;
     text-align: center;
+    /* font-size: 20px; */
+    border-radius: 5px;
+    background-color: var(--light-blue);
+}
+
+#SMPtimeText {
+    padding: 5px;
+    margin: 0;
+    color: var(--yellow);
 }

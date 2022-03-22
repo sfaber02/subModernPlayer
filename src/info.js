@@ -5,9 +5,9 @@ const Info = (props) => {
 
     return (
         <div id="SMPinfo">
-            <h1 className='SMPinfoText'>{song.title}</h1>
-            <h1 className='SMPinfoText'>{song.date}</h1>
-            <h1 className='SMPinfoText'>{song.notes}</h1>
+            <h1 className='SMPinfoTextTitle'>{song.title}</h1>
+            <h1 className='SMPinfoTextDate'>{song.date}</h1>
+            <h1 className='SMPinfoTextNotes'>{song.notes}</h1>
         </div>
     );
 }

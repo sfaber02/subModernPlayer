@@ -19,7 +19,7 @@ const Playlist = (props) => {
     
     return (
         <div id='SMPplaylistContainer'>
-            <Info song={songs[currentSong]} />
+            {currentSong && <Info song={songs[currentSong]} />}
             <SeekBar song={songs[currentSong]} next={playNext} prev={playPrev} />
             <ol>
                 {songs.map((song, i) => <li className='playlistItem' id={i} onClick={click}>{song.title}</li>)}

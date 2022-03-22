@@ -108,8 +108,8 @@ const SeekBar = (props) => {
     return (
         <>
             {song && <div id='SMPwaveform'></div>}
-            {!song || loading < 101 && <div className='SMPtime'>Loading: {loading} %</div>}
-            {song && <div className='SMPtime'><h3>{`${time.current[0]}:${time.current[1]}`} / {`${time.duration[0]}:${time.duration[1]}`}</h3></div>}
+            {!song || loading < 100 && <div className='SMPtime'>Loading: {loading} %</div>}
+            {song && <div className='SMPtime'><h3 id='SMPtimeText'>{`${time.current[0]}:${time.current[1]}`} / {`${time.duration[0]}:${time.duration[1]}`}</h3></div>}
             {song && <Controls 
                 play={playIt}
                 stop={stopIt}
