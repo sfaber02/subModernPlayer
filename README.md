@@ -25,10 +25,15 @@
 
 ## ToDo
 - need to get a precise mockup of what the player will recieve from the website
-- figure out waveform rendering
 - fancy animated buttons of course
-- need to figure out how to get wavesurfer to render into a div within react
 - make play/pause the same button?
+- current time display with an interval function?
+- refactor playlist into library view and playlist
+    - should perhaps preload files added to playlist for quick play
+- figure out how to cancel time update interval
+
+## Bugs
+- Loading display only works on first song loaded
 
 
 ## Ideas 

@@ -3,21 +3,23 @@ import WaveSurfer  from 'wavesurfer.js';
 import { Controls } from './controls.js'
 
 const SeekBar = (props) => {
-    console.log (props.song);
     const song = props.song || '';
     const currentSong = useRef();
     const [playing, setPlaying] = useState(() => false);
-    const [time, setTime] = useState(['butts', 'butts']);
+    const [time, setTime] = useState(() => { return { current: [0, 0], duration: [0, 0] } });
     const [loading, setLoading] = useState();
 
     /**
      * Watches for a change in the selected song from the playlist
-     * unloads current song and loads new song
      */
     useEffect(() => {
+
+        /** Unloads current song */
         if (currentSong.current) {
             currentSong.current.destroy();
         }
+
+        /** If a song as been selected, create a new waveform */
         if (song) {
             currentSong.current =
                 WaveSurfer.create({
@@ -35,24 +37,33 @@ const SeekBar = (props) => {
                     // backend: 'MediaElement',
                     // mediaControls: true,
                 });
+
+            /** Loads Song */
             currentSong.current.load(require(`${song.src}`));
+
+            /** Monitors Loading Percentage */
             currentSong.current.on('loading', (p) => {
                 setLoading(p);
             });
+
+            /** 
+             * Once the song is full loaded calculate the duration and set up time display
+             * also if last song was playing, auto play the new song
+             */
             currentSong.current.on('ready', () => {
-                
-                setTime([
-                    currentSong.current.getCurrentTime(),
-                    currentSong.current.getDuration()
-                ]);
-            });
-            if (playing) {
-                currentSong.current.on('ready', () => {
-                    currentSong.current.play();
+                console.log ('READY');
+                const duration = currentSong.current.getDuration();
+                setTime({
+                    current: [0, 0],
+                    duration: [Math.floor(duration / 60), (duration % 60).toFixed(1)]
                 });
-            }
+                if (playing) {
+                    currentSong.current.play();
+                }
+            });
         }
     }, [song])
+
 
     /**
      * monitors loading state of song 
@@ -63,19 +74,23 @@ const SeekBar = (props) => {
         if (loading == 100) {
             currentSong.current.un('loading');
             console.log ('this worked');
-            setTime([
-                currentSong.current.getCurrentTime(),
-                currentSong.current.getDuration()
-            ])
         }
     }, [loading]);
 
 
-    
+    /** Click handlers for transport buttons */
     const playIt = () => {
         currentSong.current.play();
-        setTime([currentSong.current.getCurrentTime(), currentSong.current.getDuration()]);
         setPlaying(true);
+        const currentTime = setInterval(() => {
+            setTime((prev) => {
+                const cTime = currentSong.current.getCurrentTime();
+                return {
+                    ...prev,
+                    current: [Math.floor(cTime / 60), (cTime % 60).toFixed(1)]
+                };
+            })
+        }, 50)
     }
     const stopIt = () => {
         currentSong.current.stop();
@@ -85,14 +100,16 @@ const SeekBar = (props) => {
         currentSong.current.pause();
         setPlaying(false);
     }
-    const nextIt = () => props.next();
+    const nextIt = () => {
+        props.next();
+    }
     const prevIt = () => props.prev();
 
     return (
         <>
             {song && <div id='SMPwaveform'></div>}
             {!song || loading < 101 && <div className='SMPtime'>Loading: {loading} %</div>}
-            {song && <div className='SMPtime'><h3>{time[0]}/{time[1]}</h3></div>}
+            {song && <div className='SMPtime'><h3>{`${time.current[0]}:${time.current[1]}`} / {`${time.duration[0]}:${time.duration[1]}`}</h3></div>}
             {song && <Controls 
                 play={playIt}
                 stop={stopIt}
