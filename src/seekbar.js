@@ -7,7 +7,7 @@ const SeekBar = (props) => {
     const currentSong = useRef();
     const timeInterval = useRef();
     const [playing, setPlaying] = useState(() => false);
-    const [time, setTime] = useState(() => { return { current: [0, 0], duration: [0, 0], interval: '' } });
+    const [time, setTime] = useState(() => { return { current: [0, 0], duration: [0, 0] } });
     const [loading, setLoading] = useState();
 
     /**

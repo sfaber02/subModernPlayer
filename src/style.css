@@ -13,19 +13,18 @@ html {
     background-color: var(--blue);
 }
 
-#SMPplayerContainer {
-    /* display: flex; */
-    /* border: 1px solid white; */
-    /* flex-direction: row; */
-}
 
-#SMPplaylistContainer {
+/* Contains entire player and library */
+#SMPmainContainer {
     display: flex;
     flex-direction: column;
     /* border: 1px solid white; */
     width: 100%;
 }
 
+/* Styling for waveform
+main container = SMPwaveform
+*/
 #SMPwaveform {
     border: 5px solid var(--yellow);
     margin-left: 30px;
@@ -36,11 +35,17 @@ html {
     background-color: var(--light-blue);
 }
 
+
+/* Styling for transport controls
+Container DIV - SMPcontrols
+button class - SMPcontrolButtons
+*/
 #SMPcontrols {
     /* border: 1px solid white; */
     position: relative;
     /* top: -25px; */
     margin-top: 0;
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
     align-content: flex-start;
@@ -72,10 +77,16 @@ html {
     /* padding: 0; */
 }
 
-.playlistItem {
-    font-size: 20px;
-    color: var(--yellow)
+/* 
+Styling for INFO section
+
+container div - SMPinfo
+classes {
+     SMPinfoTextTitle
+     SMPinfoTextDate
+     SMPinfoTextNotes
 }
+*/
 
 #SMPinfo {
     display: flex;
@@ -112,9 +123,14 @@ html {
 }
 
 
+/* Styling for time section
+Main container - SMPtime
+ids {
+    SMPtimeText
+}
+*/
 .SMPtime {
     border: 5px solid var(--yellow);
-    
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 10px;
@@ -130,4 +146,30 @@ html {
     padding: 5px;
     margin: 0;
     color: var(--yellow);
+}
+
+/** Library Styles 
+container div - SMPlibraryContainer
+classes - SMPlibraryList SMPlibraryListOdd SMPlibraryListEven
+*/
+.SMPlibraryList {
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.SMPlibraryListOdd {
+    background-color: var(--green);
+}
+
+.SMPlibraryListEven {
+    background-color: var(--light-green)
+}
+
+.SMPlibraryList:hover {
+    padding: 20px;
+    cursor: pointer;
 }

@@ -3,8 +3,11 @@
 ## Design
 - app component should recieve data from the website with all songs user has access to
 - should be info about the songs as well?
-- app component will send the songs to playlist to generate the playlist
-- playlist will send the song to be played to seekbar to render a waveform and play the song
+- app component will send the songs to library to generate a library view
+- songs can played from library or added to a playlist
+    - playlist should be saved between sessions
+
+- playlist OR library will send the song to be played to seekbar to render a waveform and play the song
 - info section
     - title
     - notes
@@ -28,26 +31,18 @@
 - need to get a precise mockup of what the player will recieve from the website
 - fancy animated buttons of course
 - make play/pause the same button?
-- current time display with an interval function?
-- refactor playlist into library view and playlist
-    - should perhaps preload files added to playlist for quick play
-- figure out how to cancel time update interval
+- should perhaps preload files added to playlist for quick play
+- add db meter?
+- animations that slide div off screen in library and slide it onto screen in playlist
 
 ## Bugs
 - Loading display only works on first song loaded
+- current time interval doesn't start if playing is true and you hit next or prev
 
 
 ## Ideas 
-- howler.js looks pretty sweet
-    - has no way to generate waveforms!! booo
-- maybe wavesurfer.js?
-    - seems to be working much better
-    - will be less of a headache to generate waveforms
-
-
 
 
 ## Dependencies
 - React.js
-- Howler.js
 - wavesurfer.js
