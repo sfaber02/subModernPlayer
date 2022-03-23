@@ -18,7 +18,8 @@
 ## Component Hierarchy
 - index.js
     - app
-        - playlist
+        - library
+            - playlist
             - seekbar
                 - control
             - info

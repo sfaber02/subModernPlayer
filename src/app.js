@@ -1,6 +1,5 @@
 import React from 'react';
 import { Howl } from 'howler';
-import { Playlist } from './playlist.js';
 import { Library } from './library.js'
 
 const App = () => {
@@ -39,8 +38,7 @@ const App = () => {
 
     return (
         <div id='SMPplayerContainer'>
-            <Playlist songs={songs} />
-            <Library />
+            <Library songs={songs}/>
         </div>
     );
 }

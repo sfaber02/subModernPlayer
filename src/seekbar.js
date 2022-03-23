@@ -5,8 +5,9 @@ import { Controls } from './controls.js'
 const SeekBar = (props) => {
     const song = props.song || '';
     const currentSong = useRef();
+    const timeInterval = useRef();
     const [playing, setPlaying] = useState(() => false);
-    const [time, setTime] = useState(() => { return { current: [0, 0], duration: [0, 0] } });
+    const [time, setTime] = useState(() => { return { current: [0, 0], duration: [0, 0], interval: '' } });
     const [loading, setLoading] = useState();
 
     /**
@@ -82,7 +83,8 @@ const SeekBar = (props) => {
     const playIt = () => {
         currentSong.current.play();
         setPlaying(true);
-        const currentTime = setInterval(() => {
+        timeInterval.current = setInterval(() => {
+            console.log ('INTERVAL RUNNING');
             setTime((prev) => {
                 const cTime = currentSong.current.getCurrentTime();
                 return {
@@ -94,16 +96,22 @@ const SeekBar = (props) => {
     }
     const stopIt = () => {
         currentSong.current.stop();
+        clearInterval(timeInterval.current);
         setPlaying(false);
     }
     const pauseIt = () => {
         currentSong.current.pause();
+        clearInterval(timeInterval.current);
         setPlaying(false);
     }
     const nextIt = () => {
         props.next();
+        clearInterval(timeInterval.current);
     }
-    const prevIt = () => props.prev();
+    const prevIt = () => {
+        props.prev();
+        clearInterval(timeInterval.current);
+    }
 
     return (
         <>
