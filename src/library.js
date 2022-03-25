@@ -23,14 +23,16 @@ const Library = (props) => {
             songs.forEach((e, i) => {
                 if (i % 2) {
                     libraryView.push(
-                        <div className='SMPlibraryList SMPlibraryListEven' onClick={click} key={i} id={i}>
-                            {`${e.date} - ${e.title} - ${e.notes.map(e => e)}`}
+                        <div className='SMPlibraryList SMPlibraryListEven' key={i}>
+                            <p className='SMPlibraryText' onClick={click} id={i}>{`${e.date} - ${e.title} - ${e.notes.map(e => e)}`}</p>
+                            <button className='SMPlibraryPlaylistAdd'>+</button>
                         </div>
                     );
                 } else {
                     libraryView.push(
-                        <div className='SMPlibraryList SMPlibraryListOdd' onClick={click} key={i} id={i}>
-                            {`${e.date} - ${e.title} - ${e.notes.map(e => e)}`}
+                        <div className='SMPlibraryList SMPlibraryListOdd' key={i}>
+                            <p className='SMPlibraryText' onClick={click} id={i}>{`${e.date} - ${e.title} - ${e.notes.map(e => e)}`}</p>
+                            <button className='SMPlibraryPlaylistAdd'>+</button>
                         </div>
                     ); 
                 }

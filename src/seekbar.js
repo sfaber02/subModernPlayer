@@ -14,12 +14,10 @@ const SeekBar = (props) => {
      * Watches for a change in the selected song from the playlist
      */
     useEffect(() => {
-
         /** Unloads current song */
         if (currentSong.current) {
             currentSong.current.destroy();
         }
-
         /** If a song as been selected, create a new waveform */
         if (song) {
             currentSong.current =
@@ -48,7 +46,7 @@ const SeekBar = (props) => {
             });
 
             /** 
-             * Once the song is full loaded calculate the duration and set up time display
+             * Once the song is fully loaded calculate the duration and set up time display
              * also if last song was playing, auto play the new song
              */
             currentSong.current.on('ready', () => {
