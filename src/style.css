@@ -176,5 +176,5 @@ classes - SMPlibraryList SMPlibraryListOdd SMPlibraryListEven SMPlibraryText SMP
 
 .SMPlibraryList:hover {
     cursor: pointer;
-    background-color: var(--blue)
+    background-color: var(--yellow)
 }

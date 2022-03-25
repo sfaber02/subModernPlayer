@@ -1,41 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { SeekBar } from './seekbar';
-import { Info } from './info.js';
+
+
+import { Playlist } from './playlist.js'
 
 const Library = (props) => {
     /** State for currently playing song */
-    const [currentSong, setCurrentSong] = useState();
+    const [playlistSongs, setPlaylistSongs] = useState(() => []);
     const [library, setLibrary] = useState();
 
     /** array of songs passed in from app */
     const songs = props.songs;
 
-    /** click handler for playlist items */
-    const click = ({ target }) => setCurrentSong(Number(target.id));
-    
-    /** Event handlers that respond to back and next button clicks from controls component */
-    const playNext = () => currentSong == songs.length - 1 ? setCurrentSong(0) : setCurrentSong(c => c += 1);
-    const playPrev = () => currentSong == 0 ? setCurrentSong(songs.length -  1) : setCurrentSong(c => c -= 1);
+    /** click handler playing a song right away */
+    const handleSongClick = ({ target }) => '';
+
+    /** click handler for adding a song to the playlist */
+    const handleAddtoPlaylist = ({ target }) => setPlaylistSongs(p => [...p, songs[target.id]]);
+
 
     useEffect(() => {
         setLibrary(() => {
             let libraryView = [];
             songs.forEach((e, i) => {
-                if (i % 2) {
-                    libraryView.push(
-                        <div className='SMPlibraryList SMPlibraryListEven' key={i}>
-                            <p className='SMPlibraryText' onClick={click} id={i}>{`${e.date} - ${e.title} - ${e.notes.map(e => e)}`}</p>
-                            <button className='SMPlibraryPlaylistAdd'>+</button>
-                        </div>
-                    );
-                } else {
-                    libraryView.push(
-                        <div className='SMPlibraryList SMPlibraryListOdd' key={i}>
-                            <p className='SMPlibraryText' onClick={click} id={i}>{`${e.date} - ${e.title} - ${e.notes.map(e => e)}`}</p>
-                            <button className='SMPlibraryPlaylistAdd'>+</button>
-                        </div>
-                    ); 
-                }
+                libraryView.push(
+                    <div className={`SMPlibraryList ${i % 2 ? "SMPlibraryListEven" : "SMPlibraryListOdd"}`} key={i}>
+                        <p className='SMPlibraryText' onClick={handleSongClick} id={i}>{`${e.date} - ${e.title} - ${e.notes.map(e => e)}`}</p>
+                        <button className='SMPlibraryPlaylistAdd' id={i} onClick={handleAddtoPlaylist}>+</button>
+                    </div>
+                );
             });
             return libraryView;
         });
@@ -43,8 +35,7 @@ const Library = (props) => {
     
     return (
         <div id='SMPmainContainer'>
-            {currentSong !== undefined && <Info song={songs[currentSong]} />}
-            <SeekBar song={songs[currentSong]} next={playNext} prev={playPrev} />
+            <Playlist playlistSongs={playlistSongs} />
             <div id="SMPlibraryContainer">
                 <h3>Library</h3>
                 {library}
