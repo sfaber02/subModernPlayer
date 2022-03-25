@@ -10,6 +10,8 @@ const SeekBar = (props) => {
     const [time, setTime] = useState(() => { return { current: [0, 0], duration: [0, 0] } });
     const [loading, setLoading] = useState();
 
+    // console.log(song);
+    
     /**
      * Watches for a change in the selected song from the playlist
      */
@@ -33,7 +35,7 @@ const SeekBar = (props) => {
                     barWidth: 5,
                     barRadius: 5,
                     cursorWidth: 3,
-                    // backend: 'MediaElement',
+                    backend: 'MediaElement',
                     // mediaControls: true,
                 });
 

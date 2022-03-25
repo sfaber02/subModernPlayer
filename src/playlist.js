@@ -8,31 +8,14 @@ import { Info } from './info.js';
 const Playlist = (props) => {
     const libraryPlaylist = props.playlistSongs;
     const [playlist, setPlaylist] = useState(() => []);
+    const [currentSong, setCurrentSong] = useState();
 
     useEffect(() => {
         const newSong = libraryPlaylist[libraryPlaylist.length - 1];
         console.log (newSong);
         if (!playlist.find(song => song.id === newSong.id) && libraryPlaylist.length > 0) {
             console.log ('NEW SONG');
-            const song = 
-                WaveSurfer.create({
-                    container: '#SMPwaveform',
-                    waveColor: '#AA0000',
-                    progressColor: 'purple',
-                    cursorColor: '#FFFF55',
-                    // audioRate: .1,
-                    height: 200,
-                    // normalize: true,
-                    responsive: true,
-                    barWidth: 5,
-                    barRadius: 5,
-                    cursorWidth: 3,
-                    // backend: 'MediaElement',
-                    // mediaControls: true,
-                });
-
             setPlaylist((prev) => {
-
                 return [
                     ...prev,
                     newSong
@@ -43,16 +26,18 @@ const Playlist = (props) => {
         }
     }, [libraryPlaylist]);
 
+    const handleClick = ({ target }) => setCurrentSong(playlist[target.id]);
+ 
     // /** Event handlers that respond to back and next button clicks from controls component */
     // const playNext = () => currentSong == songs.length - 1 ? setCurrentSong(0) : setCurrentSong(c => c += 1);
     // const playPrev = () => currentSong == 0 ? setCurrentSong(songs.length -  1) : setCurrentSong(c => c -= 1);
 
     return (
         <div id="SMPplaylistContainer">
-            <Info />
-            <SeekBar />
+            {currentSong && <Info song={currentSong} />}
+            <SeekBar song={currentSong} />
             <h1>PLAYLIST HERE</h1>
-            {props.playlistSongs.map(e => e.title)}
+            {playlist.map((e, i) => <div className='SMPplaylistItem' id={i} onClick={handleClick}>{e.title}</div>)}
         </div>
     );
 }
