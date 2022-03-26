@@ -18,6 +18,7 @@ const Library = (props) => {
         setNowSong(songs[target.id]);
     }
 
+    /** clears nowSong so if same song is clicked twice playing will restart */
     const clearNowSong = () => setNowSong('');
 
     const removeFromPlaylist = (song) => {
@@ -28,7 +29,6 @@ const Library = (props) => {
         setPlaylistSongs((p) => {
             return [...p.splice(0, removeIndex), ...p.splice(removeIndex, p.length - 1)]
         });
-        
     }
 
     /** click handler for adding a song to the playlist */
@@ -39,14 +39,16 @@ const Library = (props) => {
         console.log (playlistSongs);
         setLibrary(() => {
             let libraryView = [];
+            let colorSwitcher = 0;
             songs.forEach((e, i) => {
                 if (!playlistSongs.find(song => song.id === i)) {
                     libraryView.push(
-                        <div className={`SMPlibraryList ${i % 2 ? "SMPlibraryListEven" : "SMPlibraryListOdd"}`} key={i}>
+                        <div className={`SMPlibraryList ${colorSwitcher % 2 ? "SMPlibraryListEven" : "SMPlibraryListOdd"}`} key={i}>
                             <p className='SMPlibraryText' onClick={handleSongClick} id={i}>{`${e.date} - ${e.title} - ${e.notes.map(e => e)}`}</p>
                             <button className='SMPlibraryPlaylistAdd' id={i} onClick={handleAddtoPlaylist}>+</button>
                         </div>
                     );
+                    colorSwitcher++;
                 }
             });
             return libraryView;

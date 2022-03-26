@@ -28,13 +28,11 @@
 ## Data flow
 - songs come in as an array of objects into the app component
     - all songs are passed to the library as a prop also an array of objects
-        - songs added to playlisst are passed to playlist objecty as an array of objects
+        - songs added to playlist are passed to playlist objecty as an array of objects
 
 ## ToDo
-- get prev next buttons working again
 - highlight playing item in playlist
 - make playlist arrangeable?
-- get auto next working on playlist
 - repeat/ random buttons?
 - need to get a precise mockup of what the player will recieve from the website
 - fancy animated buttons of course
@@ -45,8 +43,6 @@
 
 ## Bugs
 - Loading display only works on first song loaded
-- current time interval doesn't start if playing is true and you hit next or prev
-- need to re render library divs once a song is added to PL to redo alternating colors
 
 
 ## Ideas 

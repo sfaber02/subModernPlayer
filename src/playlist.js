@@ -24,23 +24,15 @@ const Playlist = (props) => {
 
     /** watches for changes in the playlist to populate a new playlist */
     useEffect(() => {
-        // console.log ('EFFECT TRIGGER');
-        // const newSong = libraryPlaylist[libraryPlaylist.length - 1];
-        // if (libraryPlaylist.length > 0) {
-        //     setPlaylist((prev) => {
-        //         return [
-        //             ...prev,
-        //             newSong,
-        //         ];
-        //     });
-        // }
         setPlaylist(libraryPlaylist);
     }, [libraryPlaylist]);
 
+    /** handles click on playlist item to change current song */
     const handleClick = ({ target }) => {
         setCurrentSong(playlist[target.id]);
     }
 
+    /** handles click on playlist remove button */
     const handleRemoveFromPlaylistClick = ({ target }) => {
         console.log (target.id);
         props.removeFromPlaylist(playlist[target.id])
@@ -59,14 +51,14 @@ const Playlist = (props) => {
     return (
         <>
             {currentSong && <Info song={currentSong} />}
-            <SeekBar song={currentSong} prev={playPrev} next={playNext}  />
+            <SeekBar song={currentSong} prev={playPrev} next={playNext} playlistExists={playlist.length > 0 ? true : false} />
             {playlist.length > 0 && 
                 <div id="SMPplaylistContainer">
                     <h1>PLAYLIST HERE</h1>
                     {playlist.map((e, i) => {
                         return (
                             <div className='SMPplaylistItem' key={uuidv4()}>
-                                <p id={i} key={uuidv4()} onClick={handleClick}>{e.title}</p>
+                                <p className='SMPplaylistText' id={i} key={uuidv4()} onClick={handleClick}>{e.title}</p>
                                 <button id={i} key={uuidv4()} onClick={handleRemoveFromPlaylistClick}>-</button>
                             </div>
                         );

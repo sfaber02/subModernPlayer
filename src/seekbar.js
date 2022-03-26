@@ -59,8 +59,12 @@ const SeekBar = (props) => {
                 });
                 if (playing) {
                     currentSong.current.play();
+                    startTimer();
                 }
             });
+
+            /** if current song finishes and there are more songs in PL go to next song */
+            currentSong.current.on("finish", () => nextIt());
         }
     }, [song])
 
@@ -74,12 +78,10 @@ const SeekBar = (props) => {
             currentSong.current.un('loading');
         }
     }, [loading]);
+    
 
-
-    /** Click handlers for transport buttons */
-    const playIt = () => {
-        currentSong.current.play();
-        setPlaying(true);
+    /** function to start and stop the timer update interval */
+    const startTimer = () => {
         timeInterval.current = setInterval(() => {
             console.log ('INTERVAL RUNNING');
             setTime((prev) => {
@@ -91,23 +93,38 @@ const SeekBar = (props) => {
             })
         }, 50)
     }
+    const stopTimer = () => {
+        clearInterval(timeInterval.current);
+    }
+
+
+    /** Click handlers for transport buttons */
+    const playIt = () => {
+        currentSong.current.play();
+        setPlaying(true);
+        startTimer();
+    }
     const stopIt = () => {
         currentSong.current.stop();
-        clearInterval(timeInterval.current);
+        stopTimer();
         setPlaying(false);
     }
     const pauseIt = () => {
         currentSong.current.pause();
-        clearInterval(timeInterval.current);
+        stopTimer();
         setPlaying(false);
     }
     const nextIt = () => {
-        props.next();
-        clearInterval(timeInterval.current);
+        if (props.playlistExists) {
+            props.next();
+            stopTimer();
+        }
     }
     const prevIt = () => {
-        props.prev();
-        clearInterval(timeInterval.current);
+        if (props.playlistExists) {    
+            props.prev();
+            stopTimer();
+        }
     }
 
     return (
