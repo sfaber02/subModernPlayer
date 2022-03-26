@@ -20,11 +20,23 @@ const Library = (props) => {
 
     const clearNowSong = () => setNowSong('');
 
+    const removeFromPlaylist = (song) => {
+        console.log (song);
+        console.log (playlistSongs.indexOf(song));
+        console.log (playlistSongs);
+        const removeIndex = playlistSongs.indexOf(song);
+        setPlaylistSongs((p) => {
+            return [...p.splice(0, removeIndex), ...p.splice(removeIndex, p.length - 1)]
+        });
+        
+    }
+
     /** click handler for adding a song to the playlist */
     const handleAddtoPlaylist = ({ target }) => setPlaylistSongs(p => [...p, songs[target.id]]);
 
     /** watches songs from server and playlist to decide what songs to generate into library view */
     useEffect(() => {
+        console.log (playlistSongs);
         setLibrary(() => {
             let libraryView = [];
             songs.forEach((e, i) => {
@@ -43,7 +55,7 @@ const Library = (props) => {
     
     return (
         <div id='SMPmainContainer'>
-            <Playlist playlistSongs={playlistSongs} nowSong={nowSong} clearNowSong={clearNowSong} />
+            <Playlist playlistSongs={playlistSongs} nowSong={nowSong} clearNowSong={clearNowSong} removeFromPlaylist={removeFromPlaylist} />
             <div id="SMPlibraryContainer">
                 <h3>Library</h3>
                 {library}

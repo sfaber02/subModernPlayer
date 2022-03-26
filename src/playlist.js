@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import WaveSurfer  from 'wavesurfer.js';
+import { v4 as uuidv4 } from 'uuid';
 
 import { SeekBar } from './seekbar';
 import { Info } from './info.js';
@@ -8,7 +9,6 @@ import { Info } from './info.js';
 const Playlist = (props) => {
     const libraryPlaylist = props.playlistSongs;
     const nowSong = props.nowSong;
-
     const [playlist, setPlaylist] = useState(() => []);
     const [currentSong, setCurrentSong] = useState();
 
@@ -24,19 +24,26 @@ const Playlist = (props) => {
 
     /** watches for changes in the playlist to populate a new playlist */
     useEffect(() => {
-        const newSong = libraryPlaylist[libraryPlaylist.length - 1];
-        if (libraryPlaylist.length > 0) {
-            setPlaylist((prev) => {
-                return [
-                    ...prev,
-                    newSong,
-                ];
-            });
-        }
+        // console.log ('EFFECT TRIGGER');
+        // const newSong = libraryPlaylist[libraryPlaylist.length - 1];
+        // if (libraryPlaylist.length > 0) {
+        //     setPlaylist((prev) => {
+        //         return [
+        //             ...prev,
+        //             newSong,
+        //         ];
+        //     });
+        // }
+        setPlaylist(libraryPlaylist);
     }, [libraryPlaylist]);
 
     const handleClick = ({ target }) => {
         setCurrentSong(playlist[target.id]);
+    }
+
+    const handleRemoveFromPlaylistClick = ({ target }) => {
+        console.log (target.id);
+        props.removeFromPlaylist(playlist[target.id])
     }
  
     // /** Event handlers that respond to back and next button clicks from controls component */
@@ -56,7 +63,14 @@ const Playlist = (props) => {
             {playlist.length > 0 && 
                 <div id="SMPplaylistContainer">
                     <h1>PLAYLIST HERE</h1>
-                    {playlist.map((e, i) => <div className='SMPplaylistItem' id={i} key={i} onClick={handleClick}>{e.title}<button>-</button></div>)}
+                    {playlist.map((e, i) => {
+                        return (
+                            <div className='SMPplaylistItem' key={uuidv4()}>
+                                <p id={i} key={uuidv4()} onClick={handleClick}>{e.title}</p>
+                                <button id={i} key={uuidv4()} onClick={handleRemoveFromPlaylistClick}>-</button>
+                            </div>
+                        );
+                    })}
                 </div>
             }
         </>

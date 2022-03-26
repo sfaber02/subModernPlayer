@@ -46,6 +46,7 @@
 ## Bugs
 - Loading display only works on first song loaded
 - current time interval doesn't start if playing is true and you hit next or prev
+- need to re render library divs once a song is added to PL to redo alternating colors
 
 
 ## Ideas 
