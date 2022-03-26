@@ -70,10 +70,8 @@ const SeekBar = (props) => {
      * once song is loaded get duration and set current time to 0
      */
     useEffect(() => {
-        console.log(loading);
         if (loading == 100) {
             currentSong.current.un('loading');
-            console.log ('this worked');
         }
     }, [loading]);
 

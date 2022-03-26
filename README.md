@@ -25,6 +25,11 @@
                     - control
                 - info
 
+## Data flow
+- songs come in as an array of objects into the app component
+    - all songs are passed to the library as a prop also an array of objects
+        - songs added to playlisst are passed to playlist objecty as an array of objects
+
 ## ToDo
 - get prev next buttons working again
 - highlight playing item in playlist

@@ -13,7 +13,12 @@ const Library = (props) => {
     const songs = props.songs;
 
     /** click handler playing a song right away */
-    const handleSongClick = ({ target }) => setNowSong(songs[target.id]);
+    const handleSongClick = ({ target }) => {
+        console.log ('now song change');
+        setNowSong(songs[target.id]);
+    }
+
+    const clearNowSong = () => setNowSong('');
 
     /** click handler for adding a song to the playlist */
     const handleAddtoPlaylist = ({ target }) => setPlaylistSongs(p => [...p, songs[target.id]]);
@@ -38,7 +43,7 @@ const Library = (props) => {
     
     return (
         <div id='SMPmainContainer'>
-            <Playlist playlistSongs={playlistSongs} nowSong={nowSong} />
+            <Playlist playlistSongs={playlistSongs} nowSong={nowSong} clearNowSong={clearNowSong} />
             <div id="SMPlibraryContainer">
                 <h3>Library</h3>
                 {library}
