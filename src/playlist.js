@@ -7,9 +7,16 @@ import { Info } from './info.js';
 
 const Playlist = (props) => {
     const libraryPlaylist = props.playlistSongs;
+    const nowSong = props.nowSong;
     const [playlist, setPlaylist] = useState(() => []);
     const [currentSong, setCurrentSong] = useState();
 
+    /** watches for changes in nowSong to play a selected library song right away */
+    useEffect(() => {
+        setCurrentSong(nowSong);
+    }, [nowSong]);
+
+    /** watches for changes in the playlist to populate a new playlist */
     useEffect(() => {
         const newSong = libraryPlaylist[libraryPlaylist.length - 1];
         console.log (newSong);
@@ -33,12 +40,14 @@ const Playlist = (props) => {
     // const playPrev = () => currentSong == 0 ? setCurrentSong(songs.length -  1) : setCurrentSong(c => c -= 1);
 
     return (
-        <div id="SMPplaylistContainer">
+        <>
             {currentSong && <Info song={currentSong} />}
             <SeekBar song={currentSong} />
-            <h1>PLAYLIST HERE</h1>
-            {playlist.map((e, i) => <div className='SMPplaylistItem' id={i} onClick={handleClick}>{e.title}</div>)}
-        </div>
+            {playlist.length > 0 && <div id="SMPplaylistContainer">
+                <h1>PLAYLIST HERE</h1>
+                {playlist.map((e, i) => <div className='SMPplaylistItem' id={i} onClick={handleClick}>{e.title}<button>-</button></div>)}
+            </div>}
+        </>
     );
 }
 

@@ -152,6 +152,18 @@ ids {
 container div - SMPlibraryContainer
 classes - SMPlibraryList SMPlibraryListOdd SMPlibraryListEven SMPlibraryText SMPlibraryPlayistAdd
 */
+
+#SMPlibraryContainer {
+    background-color: var(--red);
+    border: 5px solid var(--yellow);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
 .SMPlibraryList {
     display: flex;
     border-radius: 10px;
@@ -180,8 +192,25 @@ classes - SMPlibraryList SMPlibraryListOdd SMPlibraryListEven SMPlibraryText SMP
 }
 
 /** PLAYLIST STYLES
+main container - SMPplaylistContainer
 classes - SMPplaylistItem
 */
+
+#SMPplaylistContainer {
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--light-blue);
+    border: 5px solid var(--yellow);
+}
+
+h1 {
+    text-align: center;
+}
 
 .SMPplaylistItem {
     background-color: var(--light-red);

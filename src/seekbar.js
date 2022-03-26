@@ -10,7 +10,6 @@ const SeekBar = (props) => {
     const [time, setTime] = useState(() => { return { current: [0, 0], duration: [0, 0] } });
     const [loading, setLoading] = useState();
 
-    // console.log(song);
     
     /**
      * Watches for a change in the selected song from the playlist

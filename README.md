@@ -2,8 +2,6 @@
 
 ## Design
 - app component should recieve data from the website with all songs user has access to
-- should be info about the songs as well?
-- app component will send the songs to library to generate a library view
 - songs can played from library or added to a playlist
     - playlist should be saved between sessions
 
@@ -23,11 +21,16 @@
     - app
         - library
             - playlist
-            - seekbar
-                - control
-            - info
+                - seekbar
+                    - control
+                - info
 
 ## ToDo
+- get prev next buttons working again
+- highlight playing item in playlist
+- make playlist arrangeable?
+- get auto next working on playlist
+- repeat/ random buttons?
 - need to get a precise mockup of what the player will recieve from the website
 - fancy animated buttons of course
 - make play/pause the same button?
