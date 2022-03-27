@@ -17,36 +17,42 @@ html {
 /* Contains entire player and library */
 #SMPmainContainer {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(10, 1fr);
     /* flex-direction: column; */
     /* border: 1px solid white; */
     width: 100%;
 }
 
-#SMPinfo {
 
+/** Grid layouts */
+#SMPinfo {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
 }
 
 #SMPwaveform {
-
-}
-
-#SMPtime {
-
-}
-
-#SMPcontrols {
-
+    grid-column: 3 / 9;
+    grid-row: 1 / 2;
 }
 
 #SMPplaylistContainer {
-    
+   grid-row: 1 / 6; 
 }
+
+#SMPcontrols {
+    grid-row: 2;
+    grid-column: 3 / 9; 
+}
+
+
 
 #SMPlibraryContainer {
-
+    grid-column: 1 / 9;
+    grid-row: 3 / 11;
 }
+
+
 
 /* Styling for waveform
 main container = SMPwaveform
@@ -55,23 +61,113 @@ main container = SMPwaveform
     border: 5px solid var(--yellow);
     margin-left: 30px;
     margin-right: 30px;
-    margin-top: 0px;
+    /* margin-top: 0px; */
     /* padding: 10px; */
     border-radius: 5px;
     background-color: var(--light-blue);
 }
 
 
-/* Styling for transport controls
-Container DIV - SMPcontrols
-button class - SMPcontrolButtons
+
+
+/* 
+Styling for INFO section
+
+container div - SMPinfo
+classes {
+     SMPinfoTextTitle
+     SMPinfoTextDate
+     SMPinfoTextNotes
+}
+*/
+
+#SMPinfo {
+    display: flex;
+    flex-direction: column;
+    border: 5px solid var(--yellow);
+    margin-left: 30px;
+    margin-right: 30px;
+    /* margin-top: 0px; */
+    /* margin-bottom: 10px; */
+    /* padding: 10px; */
+    border-radius: 5px;
+    background-color: var(--light-blue);
+}
+
+.SMPinfoTextTitle {
+    color: var(--blue);
+    text-align: center;
+    margin: 0;
+    font-size: 30px;
+}
+
+.SMPinfoTextDate {
+    color: var(--light-red);
+    text-align: center;
+    margin: 0;
+    font-size: 20px;
+}
+
+.SMPinfoTextNotes {
+    color: var(--yellow);
+    text-align: center;
+    margin: 0;
+    font-size: 20px;
+}
+
+
+/* Styling for controls section
+Main container - SMPcontrols
+ids {
+    SMPtimeText
+    SMPvolumeDiv
+    SMPspeedDiv
+}
 */
 #SMPcontrols {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    border: 5px solid var(--yellow);
+    margin-left: 30px;
+    margin-right: 30px;
+    /* margin-top: 10px; */
+    /* margin-bottom: 5px; */
+    padding: 0px;
+    text-align: center;
+    /* font-size: 20px; */
+    border-radius: 5px;
+    background-color: var(--light-blue);
+}
+
+#SMPtimeText {
+    grid-row: 2 / 3;
+    padding: 5px;
+    margin: 0;
+    color: var(--yellow);
+}
+
+#SMPvolumeDiv {
+    grid-row: 2 / 3;
+}
+
+#SMPspeedDiv {
+    grid-row: 2 / 3;
+}
+
+
+
+/* Styling for transport controls
+Container DIV - SMPtransportButtons
+button class - SMPcontrolButtons
+*/
+#SMPtransportButtons {
+    grid-column: 1 / 6;
     /* border: 1px solid white; */
     position: relative;
     /* top: -25px; */
-    margin-top: 0;
-    margin-bottom: 10px;
+    /* margin-top: 10px; */
+    /* margin-bottom: 10px; */
     display: flex;
     justify-content: center;
     align-content: flex-start;
@@ -103,93 +199,18 @@ button class - SMPcontrolButtons
     /* padding: 0; */
 }
 
-/* 
-Styling for INFO section
-
-container div - SMPinfo
-classes {
-     SMPinfoTextTitle
-     SMPinfoTextDate
-     SMPinfoTextNotes
-}
-*/
-
-#SMPinfo {
-    grid-column-start: 1 / 1;
-    display: flex;
-    flex-direction: column;
-    border: 5px solid var(--yellow);
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-    /* padding: 10px; */
-    border-radius: 5px;
-    background-color: var(--light-blue);
-}
-
-.SMPinfoTextTitle {
-    color: var(--blue);
-    text-align: center;
-    margin: 0;
-    font-size: 30px;
-}
-
-.SMPinfoTextDate {
-    color: var(--light-red);
-    text-align: center;
-    margin: 0;
-    font-size: 20px;
-}
-
-.SMPinfoTextNotes {
-    color: var(--yellow);
-    text-align: center;
-    margin: 0;
-    font-size: 20px;
-}
-
-
-/* Styling for time section
-Main container - SMPtime
-ids {
-    SMPtimeText
-}
-*/
-.SMPtime {
-    display: flex;
-    justify-content: space-around;
-    border: 5px solid var(--yellow);
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    padding: 0px;
-    text-align: center;
-    /* font-size: 20px; */
-    border-radius: 5px;
-    background-color: var(--light-blue);
-}
-
-#SMPtimeText {
-    padding: 5px;
-    margin: 0;
-    color: var(--yellow);
-}
-
 /** Library Styles 
 container div - SMPlibraryContainer
 classes - SMPlibraryList SMPlibraryListOdd SMPlibraryListEven SMPlibraryText SMPlibraryPlayistAdd
 */
 
 #SMPlibraryContainer {
-    grid-area: l;
     background-color: var(--red);
     border: 5px solid var(--yellow);
     border-radius: 10px;
     padding: 10px;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    /* margin-top: 2px; */
+    /* margin-bottom: 2px; */
     margin-left: 30px;
     margin-right: 30px;
 }
@@ -233,12 +254,11 @@ classes - SMPplaylistItem
 */
 
 #SMPplaylistContainer {
-    grid-area: p;
     display: inline-block;
     margin-left: 30px;
     margin-right: 30px;
-    margin-top: 0px;
-    margin-bottom: 10px;
+    /* margin-top: 0px; */
+    /* margin-bottom: 10px; */
     padding: 10px;
     border-radius: 5px;
     background-color: var(--light-blue);
