@@ -59,7 +59,7 @@ const Playlist = (props) => {
                         return (
                             <div className='SMPplaylistItem' key={uuidv4()}>
                                 <p className='SMPplaylistText' id={i} key={uuidv4()} onClick={handleClick}>{e.title}</p>
-                                <button id={i} key={uuidv4()} onClick={handleRemoveFromPlaylistClick}>-</button>
+                                <button className="SMPplaylistButton" id={i} key={uuidv4()} onClick={handleRemoveFromPlaylistClick}>-</button>
                             </div>
                         );
                     })}

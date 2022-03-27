@@ -28,6 +28,7 @@ const SeekBar = (props) => {
                     waveColor: '#AA0000',
                     progressColor: 'purple',
                     cursorColor: '#FFFF55',
+                    hideScrollbar: true,
                     // audioRate: .1,
                     height: 200,
                     // normalize: true,
@@ -81,12 +82,14 @@ const SeekBar = (props) => {
         }
     }, [loading]);
     
+    /** updates volume state when slider is moved */
     useEffect(() => {
         if (currentSong.current) {
             currentSong.current.setVolume(Number(volume) / 100);
         }
     }, [volume])
 
+    /** updates speed state when slider is moved */
     useEffect(() => {
         if (currentSong.current) {
             currentSong.current.setPlaybackRate(Number(speed));
@@ -155,13 +158,13 @@ const SeekBar = (props) => {
             {song && 
                 <div className='SMPtime'>
                     <div>
-                        <label for="volume">Volume: {volume}</label>
+                        <label>Volume: {volume}</label>
                         <input type="range" id="SMPvolume" name="volume" min="0" max="100" value={volume} onChange={changeVolume}></input>
                     </div>
                     <h3 id='SMPtimeText'>{`${time.current[0]}:${time.current[1]}`} / {`${time.duration[0]}:${time.duration[1]}`}</h3>
                     <div>
-                        <label for="speed">Speed {speed}</label>
-                        <input type="range" id="SMPspeed" name="speed" min=".5" max="1.5" step=".05" value={speed} onChange={changeSpeed}></input>
+                        <label>Speed {speed}</label>
+                        <input type="range" id="SMPspeed" name="speed" min=".2" max="2" step=".05" value={speed} onChange={changeSpeed}></input>
                     </div>
                 </div>}
             {song && <Controls 

@@ -216,6 +216,22 @@ classes - SMPplaylistItem
     border: 5px solid var(--yellow);
 }
 
+.SMPplaylistItem {
+    display: flex;
+    background-color: var(--light-red);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.SMPplaylistButton {
+    margin-left: auto;
+}
+
+
 /** temp header */
 h1 {
     text-align: center;
@@ -230,12 +246,3 @@ h1 {
 }
 
 
-.SMPplaylistItem {
-    background-color: var(--light-red);
-    border-radius: 10px;
-    padding: 10px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    margin-left: 30px;
-    margin-right: 30px;
-}

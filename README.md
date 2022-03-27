@@ -42,6 +42,7 @@
 - animations that slide div off screen in library and slide it onto screen in playlist
 - random button
 - play speed slider?
+- move loading display to somewhere else to stop screen jitter
 
 
 
