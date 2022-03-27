@@ -40,9 +40,15 @@
 - should perhaps preload files added to playlist for quick play
 - add db meter?
 - animations that slide div off screen in library and slide it onto screen in playlist
+- random button
+- play speed slider?
+
+
 
 ## Bugs
 - Loading display only works on first song loaded
+- if you play a song from the library and there no songs in the playlist then you add songs to the playlist while that library song is playing it does not auto advance into the playlist
+- if paused and you seek through waveform time does not update
 
 
 ## Ideas 
