@@ -50,21 +50,19 @@ const Playlist = (props) => {
 
     return (
         <>
-            {currentSong && <Info song={currentSong} />}
+            <Info song={currentSong} />
             <SeekBar song={currentSong} prev={playPrev} next={playNext} playlistExists={playlist.length > 0 ? true : false} />
-            {playlist.length > 0 && 
-                <div id="SMPplaylistContainer">
-                    <h1>PLAYLIST HERE</h1>
-                    {playlist.map((e, i) => {
-                        return (
-                            <div className='SMPplaylistItem' key={uuidv4()}>
-                                <p className='SMPplaylistText' id={i} key={uuidv4()} onClick={handleClick}>{e.title}</p>
-                                <button className="SMPplaylistButton" id={i} key={uuidv4()} onClick={handleRemoveFromPlaylistClick}>-</button>
-                            </div>
-                        );
-                    })}
-                </div>
-            }
+            <div id="SMPplaylistContainer">
+                {playlist.length <= 0 && <p id="SMPplaylistMessage">Add songs to playlist!</p>}
+                {playlist.map((e, i) => {
+                    return (
+                        <div className='SMPplaylistItem' key={uuidv4()}>
+                            <p className='SMPplaylistText' id={i} key={uuidv4()} onClick={handleClick}>{`${i + 1} - ${e.title}`}</p>
+                            <button className="SMPplaylistButton" id={i} key={uuidv4()} onClick={handleRemoveFromPlaylistClick}>-</button>
+                        </div>
+                    );
+                })}
+            </div> 
         </>
     );
 }
