@@ -30,7 +30,7 @@ const SeekBar = (props) => {
                     cursorColor: '#FFFF55',
                     hideScrollbar: true,
                     // audioRate: .1,
-                    height: 200,
+                    height: 180,
                     // normalize: true,
                     responsive: true,
                     barWidth: 5,

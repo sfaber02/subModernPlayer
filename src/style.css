@@ -9,10 +9,26 @@
     --light-green: #00AAAA; 
 }
 
+
+
 html {
     background-color: var(--blue);
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background-color: var(--red);
+    
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--yellow);
+    border-radius: 5%;
+}
+::-webkit-scrollbar-corner {
+    background-color: var(--red);
+}
 
 /* Contains entire player and library */
 #SMPmainContainer {
@@ -51,9 +67,8 @@ html {
 #SMPlibraryContainer {
     grid-column: 1 / 7;
     grid-row: 3;
-    max-height: 100%;
-    /* overflow-y: scroll; */
-    scrollbar-width: 2px;
+    overflow-y: auto;
+    overflow-x: hidden;
     margin: 5px;
 }
 
