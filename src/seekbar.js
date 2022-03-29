@@ -25,16 +25,17 @@ const SeekBar = (props) => {
             currentSong.current =
                 WaveSurfer.create({
                     container: '#SMPwaveform',
+                    splitChannels: true,
                     waveColor: '#AA0000',
                     progressColor: 'purple',
                     cursorColor: '#FFFF55',
                     hideScrollbar: true,
                     // audioRate: .1,
-                    height: 180,
+                    height: 90,
                     // normalize: true,
                     responsive: true,
-                    barWidth: 5,
-                    barRadius: 5,
+                    barWidth: 0,
+                    barRadius: 3,
                     cursorWidth: 3,
                     backend: 'MediaElement',
                     // mediaControls: true,
@@ -66,10 +67,20 @@ const SeekBar = (props) => {
                 }
             });
 
-            /** if current song finishes and there are more songs in PL go to next song */
+            /** if current song finishes and there are more songs in PL go to next song 
+             * maybe add this  
+            */
             currentSong.current.on("finish", () => nextIt());
         }
     }, [song])
+
+
+    useEffect(() => {
+        if (currentSong.current) {
+            currentSong.current.un("finish");
+            currentSong.current.on("finish", () => nextIt());
+        }
+    }, [props.playlist]);
 
 
     /**
@@ -133,36 +144,41 @@ const SeekBar = (props) => {
     const nextIt = () => {
         console.log ('NEXT');
         console.log (props.playlistExists);
-        if (props.playlistExists) {
+        // if (props.playlistExists) {
             props.next();
             stopTimer();
-        }
+        // }
     }
     const prevIt = () => {
-        if (props.playlistExists) {    
+        // if (props.playlistExists) {    
             props.prev();
             stopTimer();
-        }
+        // }
     }
 
     /** Handles volume slider */
     const changeVolume = (e) => setVolume(e.target.value);
     /** Handles speed slider */
     const changeSpeed = (e) => setSpeed(e.target.value);
+    /** Handles speed reset button */
+    const resetSpeed = () => setSpeed(1);
 
 
     return (
         <>
             <div id='SMPwaveform'></div>
-            {loading < 100 && <div className='SMPtime'>Loading: {loading} %</div>} 
+            
             <div id='SMPcontrols'>
                 <div id="SMPvolumeDiv">
                     <label>Volume: {volume}</label>
                     <input type="range" id="SMPvolume" name="volume" min="0" max="100" value={volume} onChange={changeVolume}></input>
                 </div>
-                <h3 id='SMPtimeText'>{`${time.current[0]}:${time.current[1]}`} / {`${time.duration[0]}:${time.duration[1]}`}</h3>
+                {loading < 100 ? 
+                    <div className='SMPtimeText'>Loading: {loading} %</div> :
+                    <h3 className='SMPtimeText'>{`${time.current[0]}:${time.current[1]}`} / {`${time.duration[0]}:${time.duration[1]}`}</h3>
+                }
                 <div id="SMPspeedDiv">
-                    <label>Speed {speed}</label>
+                    <label>Speed {speed}</label><button onClick={resetSpeed}>Reset</button>
                     <input type="range" id="SMPspeed" name="speed" min=".2" max="2" step=".05" value={speed} onChange={changeSpeed}></input>
                 </div>
                 <Controls 
