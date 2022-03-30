@@ -1,5 +1,4 @@
 import React from 'react';
-import { Howl } from 'howler';
 import { Library } from './library.js'
 
 const App = () => {

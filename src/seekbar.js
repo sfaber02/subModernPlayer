@@ -67,6 +67,17 @@ const SeekBar = (props) => {
                 }
             });
 
+            /**Seek event listener to update time after seeking if song is paused */
+            currentSong.current.on('seek', () => {
+                setTime((c) => {
+                    const cTime = currentSong.current.getCurrentTime();
+                    return {
+                        ...c,
+                        current: [Math.floor(cTime / 60), (cTime % 60).toFixed(2) < 10 ? `0${(cTime % 60).toFixed(2)}`: (cTime % 60).toFixed(2)] 
+                    }
+                })
+            });
+
             /** if current song finishes and there are more songs in PL go to next song 
              * maybe add this  
             */
@@ -170,7 +181,7 @@ const SeekBar = (props) => {
             
             <div id='SMPcontrols'>
                 <div id="SMPvolumeDiv">
-                    <label>Volume: {volume}</label>
+                    <label id="SMPvolumeText">Volume: {volume}</label>
                     <input type="range" id="SMPvolume" name="volume" min="0" max="100" value={volume} onChange={changeVolume}></input>
                 </div>
                 {loading < 100 ? 
@@ -178,7 +189,7 @@ const SeekBar = (props) => {
                     <h3 className='SMPtimeText'>{`${time.current[0]}:${time.current[1]}`} / {`${time.duration[0]}:${time.duration[1]}`}</h3>
                 }
                 <div id="SMPspeedDiv">
-                    <label>Speed {speed}</label><button onClick={resetSpeed}>Reset</button>
+                    <label id="SMPspeedText">Speed {speed}</label><button id="SMPspeedReset" onClick={resetSpeed}>Reset</button>
                     <input type="range" id="SMPspeed" name="speed" min=".2" max="2" step=".05" value={speed} onChange={changeSpeed}></input>
                 </div>
                 <Controls 

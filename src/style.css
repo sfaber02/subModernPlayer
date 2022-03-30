@@ -18,9 +18,9 @@ html {
 ::-webkit-scrollbar {
     width: 5px;
 }
+
 ::-webkit-scrollbar-track {
-    background-color: var(--red);
-    
+    background-color: var(--red);  
 }
 ::-webkit-scrollbar-thumb {
     background-color: var(--yellow);
@@ -163,6 +163,22 @@ ids {
     grid-column: 5 / 6;
 }
 
+#SMPspeedReset {
+    margin-left: 8px;
+    background-color: var(--blue);
+    color: var(--yellow);
+    border-radius: 25%;
+}
+
+#SMPspeedReset:hover {
+    background-color: var(--green);
+}
+
+#SMPvolumeText, #SMPspeedText {
+    color: var(--yellow);
+}
+
+
 
 
 /* Styling for transport controls
@@ -186,24 +202,19 @@ button class - SMPcontrolButtons
     background-color: var(--blue);
     padding: 0;
     margin-top: 5px;
+}
+
+.SMPcontrolButtonsImg {
+    height: 25px;
+    width: 25px;
+    object-fit: scale-down;
 
 }
 
 .SMPcontrolButtons:hover {
-    color: var(--light-red);
+    background-color: var(--green);
 }
 
-#pauseButton {
-    font-size: 13px;
-    padding-bottom: 1px;
-}
-
-#stopButton {
-    font-size: 40px;
-    /* padding-bottom: 10px; */
-    padding-top: 0px;
-    /* padding: 0; */
-}
 
 /** Library Styles 
 container div - SMPlibraryContainer
@@ -215,7 +226,7 @@ classes - SMPlibraryList SMPlibraryListOdd SMPlibraryListEven SMPlibraryText SMP
     border: 2px solid var(--yellow);
     border-radius: 10px;
     padding: 10px;
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 .SMPlibraryList {
